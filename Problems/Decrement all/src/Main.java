@@ -22,6 +22,7 @@ class Main {
         numThree--;
         numFour--;
 
+
         //print
         System.out.print(numOne + " ");
         System.out.print(numTwo + " ");
