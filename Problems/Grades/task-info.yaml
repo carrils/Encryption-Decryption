@@ -1,0 +1,42 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    class Main {
+        public static void main(String[] args) {
+            // put your code here
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2192
+status: Failed
+feedback:
+  message: |+
+    Failed test #1 of 10. Time limit exceeded
+
+    This is a sample test from the problem statement!
+
+    Test input:
+    13
+    2
+    5
+    5
+    5
+    5
+    3
+    2
+    4
+    3
+    3
+    3
+    2
+    3
+
+    Correct output:
+    3 5 1 4
+
+    Your code output:
+
+  time: Sat, 18 Jul 2020 05:29:30 UTC
+record: -1
