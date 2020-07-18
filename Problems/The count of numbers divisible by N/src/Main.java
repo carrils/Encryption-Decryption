@@ -1,4 +1,11 @@
-
+/*
+Sam Carrillo
+7.17.2020
+---------------
+This program takes 3 integers separated by a space or entered separately.
+integers A, B, N. This program prints the value of how many numbers in the
+range of [A . . . B] are divisible by N.
+ */
 import java.util.Scanner;
 
 class Main {
