@@ -23,14 +23,14 @@ class Main {
         int[] grades = new int[n];
 
         //read into grades[] until n students
-        while(i < n){
+        do{
             grades[i] = input.nextInt();
-            ++i;
-        }
+            i++;
+        }while(i < n);
 
         //create and initialize the grades
         int a = 0, b = 0, c = 0, d = 0;
-        for(int j = 0; j < n; i++){
+        for(int j = 0; j < n; j++){
             if(grades[j] == 5){
                 a++;
             }else if(grades[j] == 4){
@@ -43,6 +43,6 @@ class Main {
         }
 
         //print totals
-        System.out.print(a + b + c + d);
+        System.out.print(d + " " + c + " " + b + " " + a);
     }
 }
