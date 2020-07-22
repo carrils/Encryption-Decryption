@@ -13,15 +13,20 @@ class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        long m = input.nextInt(); //long
-        int n; //x!
+        long m = input.nextLong();
+        long factorial = 1;
+        int n = 0;
 
-        for(int i = 0; i < m; i++){
-            //multiples back down the line
-            for(int j = 0; j < m; j++){
-                //iterates
+        for(int i = 1; i < m; i++){
+            //starting i at 1 to avoid assigning 0 to factorial thus everything being 0 when f * i
+            factorial = factorial * i;
+
+            if(factorial > m){
+                n = i;
+                break;
             }
-            //if(n! > m) get out and print? maybe a while would be better here.
         }
+
+        System.out.print(n);
     }
 }
