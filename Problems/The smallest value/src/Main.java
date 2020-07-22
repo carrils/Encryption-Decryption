@@ -2,8 +2,9 @@
 Sam Carrillo
 7.20.2020
 -------------
-It's raining.
-finds smallest number n! > m
+finds smallest number of n
+factorial where n! > m, and m
+is a long integer input by user
  */
 
 import java.util.Scanner;
