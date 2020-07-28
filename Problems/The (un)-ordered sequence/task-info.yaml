@@ -10,19 +10,9 @@ files:
     }
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/2734
-status: Failed
+status: Solved
 feedback:
-  message: |
-    Failed test #2 of 11. Wrong answer
-
-    This is a sample test from the problem statement!
-
-    Test input:
-    1 2 3 3 9 0
-    Correct output:
-    true
-
-    Your code output:
-    false
-  time: Tue, 28 Jul 2020 04:52:33 UTC
+  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/2734">JetBrains
+    Academy</a></html>
+  time: Tue, 28 Jul 2020 05:23:11 UTC
 record: -1

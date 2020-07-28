@@ -16,39 +16,35 @@ import java.util.Scanner;
 class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int x = 0, y = 0;
-        int[] nums = new int[0];
-        boolean inOrder = true;
-        boolean asc = false; //ascending
-        boolean desc = false; //descending
+        int x = input.nextInt();
+        int y;
 
-        while(input.hasNext()){
+        boolean asc = true; //ascending
+        boolean desc = true; //descending
+
+        while(true){
+            y = x;
             x = input.nextInt();
+
             if(x == 0){
                 break;
-            }else if(x <= y){
-                y = x;
-                desc = true;
-                continue;
-            }else if(x >= y && desc == false){
-                y = x;
-                asc = true;
-                continue;
-            }else{
-                inOrder = false;
             }
-            //y = x;
+
+            if(asc && x < y){
+                asc = false;
+                continue;
+            }
+
+            if(desc && x >y){
+                desc = false;
+                continue;
+            }
+
+            if(!desc && !asc){
+                break;
+            }
         }
 
-        System.out.print(inOrder);
-        
-//        for(int i = 0; input.nextInt() != 0; i++){
-//            nums[i] = input.nextInt();
-//        }
-
-//        do{
-//
-//        }while(input.nextInt() != 0);
-
+        System.out.print(asc || desc);
     }
 }
