@@ -19,11 +19,20 @@ class Main {
         int x = 0, y = 0;
         int[] nums = new int[0];
         boolean inOrder = true;
+        boolean asc = false; //ascending
+        boolean desc = false; //descending
 
         while(input.hasNext()){
             x = input.nextInt();
-            if(x <= y || x >= y){
+            if(x == 0){
+                break;
+            }else if(x <= y){
                 y = x;
+                desc = true;
+                continue;
+            }else if(x >= y && desc == false){
+                y = x;
+                asc = true;
                 continue;
             }else{
                 inOrder = false;
