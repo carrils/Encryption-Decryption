@@ -49,26 +49,9 @@ class Main {
         //print output based on n
         if(n > s.length()){
             System.out.print(s1);
-        }else{
+        }else {
             s2 += s1;
             System.out.print(s2);
         }
-
-
-        /*
-        better version:
-                public static void main(String[] args) {
-                Scanner scanner = new Scanner(System.in);
-
-                String str = scanner.next();
-                int offset = scanner.nextInt();
-
-                if (offset < str.length()) {
-                    System.out.print(str.substring(offset) + str.substring(0, offset));
-                } else {
-                    System.out.println(str);
-                }
-            }
-         */
     }
 }
