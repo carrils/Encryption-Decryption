@@ -11,26 +11,30 @@ of the English alphabet
  */
 package encryptdecrypt;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        String sourceString = "we found a treasure!";
+        Scanner input = new Scanner(System.in);
+        String sourceString = input.nextLine();
+        int key = input.nextInt();
 
         //create a character array of the String & alphabet char array
-        char[] fruitloops = sourceString.toCharArray();
+        char[] sourceArray = sourceString.toCharArray();
         char[] alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 
-        //encrypt fruitloops
-        for(int i = 0; i < fruitloops.length; i++){
-            for(int j = 0; j < alphabet.length; j++){
-                if(fruitloops[i] == alphabet[j]){
-                    fruitloops[i] = alphabet[25 - j];
+        //encrypt sourceArray
+        for(int i = 0; i < sourceArray.length; i++){
+            for(int j = 0; j < alphabet.length; j++){//fix going over 26 by making a follow z
+                if(sourceArray[i] == alphabet[j]){
+                    sourceArray[i] = alphabet[j + key];
                     break;
                 }
             }
         }
 
         //print result
-        String encryptedSource = new String(fruitloops);
+        String encryptedSource = new String(sourceArray);
         System.out.println(encryptedSource);
     }
 }

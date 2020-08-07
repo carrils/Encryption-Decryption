@@ -99,5 +99,12 @@ files:
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/projects/46/stages/246/implement
-status: Unchecked
+status: Failed
+feedback:
+  message: "Exception in test #1\n\njava.lang.ArrayIndexOutOfBoundsException: Index\
+    \ 27 out of bounds for length 26\n\tat encryptdecrypt.Main.main(Main.java:30)\n\
+    \nPlease find below the output of your program during this failed test.\nNote\
+    \ that the &#39;&gt;&#39; character indicates the beginning of the input line.\n\
+    \n---\n\n&gt; welcome to hyperskill\n&gt; 5"
+  time: Fri, 07 Aug 2020 04:57:37 UTC
 record: 2
