@@ -21,16 +21,28 @@ public class Main {
 
         //create a character array of the String & alphabet char array
         char[] sourceArray = sourceString.toCharArray();
-        char[] alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+        char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
-        //encrypt sourceArray
-        for(int i = 0; i < sourceArray.length; i++){
-            for(int j = 0; j < alphabet.length; j++){//fix going over 26 by making a follow z
-                if(sourceArray[i] == alphabet[j]){
-                    sourceArray[i] = alphabet[j + key];
-                    break;
+        //data structure for encrypting sourceArray
+        for (int i = 0; i < sourceArray.length; i++) {
+            for (int j = 0; j <= alphabet.length; j++) {
+                //make A follow Z if not found in first revolution
+                if (j == alphabet.length) {
+                    j = 0;
                 }
+                //encrypt sourceArray with the key
+                if (sourceArray[i] == alphabet[j]) {
+                    if(j + key > alphabet.length) {
+                        sourceArray[i] = alphabet[(j - 25) + key];
+                        break;
+                    }else{
+                        sourceArray[i] = alphabet[j + key];
+                        break;
+                    }
+                }
+
             }
+
         }
 
         //print result
