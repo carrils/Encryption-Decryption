@@ -25,6 +25,10 @@ public class Main {
 
         //data structure for encrypting sourceArray
         for (int i = 0; i < sourceArray.length; i++) {
+            //ignore spaces, add in here anything you want to ignore. can be better.
+            if(sourceArray[i] == ' '){
+                continue;
+            }
             for (int j = 0; j <= alphabet.length; j++) {
                 //make A follow Z if not found in first revolution
                 if (j == alphabet.length) {
@@ -32,17 +36,16 @@ public class Main {
                 }
                 //encrypt sourceArray with the key
                 if (sourceArray[i] == alphabet[j]) {
-                    if(j + key > alphabet.length) {
-                        sourceArray[i] = alphabet[(j - 25) + key];
+                    //if value after shifting > 25, adjust shifted value
+                    if (j + key > alphabet.length) {
+                        sourceArray[i] = alphabet[(j - 26) + key];
                         break;
-                    }else{
+                    } else {
                         sourceArray[i] = alphabet[j + key];
                         break;
                     }
                 }
-
             }
-
         }
 
         //print result
@@ -50,3 +53,34 @@ public class Main {
         System.out.println(encryptedSource);
     }
 }
+/* "official solution"
+IMPROVISE
+ADAPT
+OVERCOME
+LMAO
+
+package encryptdecrypt;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        char[] chars = scanner.nextLine().toCharArray();
+        int shift = scanner.nextInt();
+
+        char a = 'a';
+        char z = 'z';
+        int size = 26;
+
+        for (char item : chars) {
+            if (item >= a && item <= z) {
+                char shiftItem = (char) (((item - a + shift) % size) + a);
+                System.out.print(shiftItem);
+            } else {
+                System.out.print(item);
+            }
+        }
+    }
+}
+ */
