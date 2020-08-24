@@ -12,11 +12,18 @@ of the English alphabet
 package encryptdecrypt;
 
 import java.util.Scanner;
-
+/*
+    TODO:
+    - make it read in 3 parameters
+        target operation for encryption and decryption (enc and dec)
+        message
+        integer key (shift)
+    - All non-characters should be encrypted as well (use unicode table for number representation of each char)
+    - decompose program, methods for encrypting and decrypting
+ */
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        //String sourceString = input.nextLine();
         char[] chars = input.nextLine().toCharArray();
         int key = input.nextInt();
 
@@ -24,7 +31,7 @@ public class Main {
         char z = 'z';
         int size = 26;
 
-        //data structure for encrypting sourceArray
+        //for-each loop for encrypting chars array
         for (char item : chars) {
             if (item >= a && item <= z) {
                 char shiftItem = (char) (((item - a + key) % size) + a);
