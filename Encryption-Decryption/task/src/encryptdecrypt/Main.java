@@ -15,6 +15,7 @@ import java.util.Scanner;
 /*
     TODO:
     - All non-characters should be encrypted as well (use unicode table for number representation of each char)
+    - https://unicode.org/charts/PDF/U0000.pdf
     - fill out decrypt
  */
 public class Main {
@@ -24,6 +25,9 @@ public class Main {
         char[] chars = input.nextLine().toCharArray();
         int key = input.nextInt();
 
+        if(operation == "enc"){
+            encrypt(chars, key);
+        }
 
     }
 
@@ -34,20 +38,25 @@ public class Main {
     }
 
     public static String encrypt(char[] _chars, int _key){
-        char a = 'a';
-        char z = 'z';
-        int size = 26;
+        //char a = 'a';//just make this the beginning of the ascii table
+        //char z = 'z';// and this the end
+        char nullChar = 0; // \0
+        char delChar = 127;// 007F ? could not find java notation for del character
+        //int size = 26;
+        int size = 128;
         String result = "";
         //for-each loop for encrypting chars array
         for (char item : _chars) {
-            if (item >= a && item <= z) {
-                char shiftItem = (char) (((item - a + _key) % size) + a);
+            if (item >= nullChar && item <= delChar) {
+                char shiftItem = (char) (((item - nullChar + _key) % size) + nullChar);
                 result += shiftItem;
             } else {
                 //this is all the non-alphabetical characters.
                 //widen to cover these to and just += shift item
-                System.out.print(item);
+                //System.out.print(item);
+                System.out.println("  ><>  ");
             }
         }
+        return result;
     }
 }
