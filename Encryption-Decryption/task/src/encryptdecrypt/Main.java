@@ -16,6 +16,7 @@ import java.util.Scanner;
     TODO:
     - All non-characters should be encrypted as well (use unicode table for number representation of each char)
     - https://unicode.org/charts/PDF/U0000.pdf
+    - https://theasciicode.com.ar/ascii-control-characters/delete-ascii-code-127.html
     - fill out decrypt
  */
 public class Main {
