@@ -26,8 +26,11 @@ public class Main {
         char[] chars = input.nextLine().toCharArray();
         int key = input.nextInt();
 
-        if(operation == "enc"){
-            encrypt(chars, key);
+        if(operation.equals("enc")){
+            String x = encrypt(chars, key);
+            System.out.println(x);
+        }else if(operation.equals("dec")){
+            System.out.println("dec");
         }
 
     }
