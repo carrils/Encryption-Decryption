@@ -12,13 +12,7 @@ of the English alphabet
 package encryptdecrypt;
 
 import java.util.Scanner;
-/*
-    TODO:
-    - All non-characters should be encrypted as well (use unicode table for number representation of each char)
-    - https://unicode.org/charts/PDF/U0000.pdf
-    - https://theasciicode.com.ar/ascii-control-characters/delete-ascii-code-127.html
-    - fill out decrypt
- */
+
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -27,39 +21,37 @@ public class Main {
         int key = input.nextInt();
 
         if(operation.equals("enc")){
-            String x = encrypt(chars, key);
-            System.out.println(x);
+            System.out.println(encrypt(chars,key));
         }else if(operation.equals("dec")){
-            System.out.println("dec");
+            System.out.println(decrypt(chars,key));
         }
 
     }
 
     public static String decrypt(char[]_chars, int _key){
-        //this is encrypt in reverse first get all nonalphabetic chars encrypted
+        //method for decrypt
+        char nullChar = 0;//beginning of base ASCII table
+        char delChar = 127;//ending of base ASCII table
+        int size = 128;
         String result = "";
+        //for-each loop for decrypting chars array
+        for(char item : _chars){
+            char shiftItem = (char)(((item + nullChar - _key) % size) - nullChar);
+            result += shiftItem;
+        }
         return result;
     }
 
     public static String encrypt(char[] _chars, int _key){
-        //char a = 'a';//just make this the beginning of the ascii table
-        //char z = 'z';// and this the end
+        //method for encrypt
         char nullChar = 0; // \0
-        char delChar = 127;// 007F ? could not find java notation for del character
-        //int size = 26;
+        char delChar = 127;// 007F
         int size = 128;
         String result = "";
         //for-each loop for encrypting chars array
         for (char item : _chars) {
-            if (item >= nullChar && item <= delChar) {
                 char shiftItem = (char) (((item - nullChar + _key) % size) + nullChar);
                 result += shiftItem;
-            } else {
-                //this is all the non-alphabetical characters.
-                //widen to cover these to and just += shift item
-                //System.out.print(item);
-                System.out.println("  ><>  ");
-            }
         }
         return result;
     }
