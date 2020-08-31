@@ -31,3 +31,4 @@ content:
 - Print "We are robots!"
 - Inverse boolean flags
 - Adding values
+- Get first and last elements
