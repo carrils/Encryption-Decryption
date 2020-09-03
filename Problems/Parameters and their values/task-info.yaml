@@ -21,5 +21,5 @@ feedback:
     Correct output:\nconfig-path=/something/there\nconfig-format=json\n\nYour code\
     \ output:\n\n\nError:\nException in thread \"main\" java.lang.ArrayIndexOutOfBoundsException:\
     \ Index 4 out of bounds for length 4\n\tat Problem.main(Main.java:13)\n\tat Main.main(Main.java:34)\n"
-  time: Thu, 03 Sep 2020 04:53:54 UTC
+  time: Thu, 03 Sep 2020 05:06:41 UTC
 record: -1
