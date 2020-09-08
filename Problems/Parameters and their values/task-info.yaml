@@ -14,12 +14,9 @@ files:
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/learn/step/3336
-status: Failed
+status: Solved
 feedback:
-  message: "Failed test #1 of 3. Runtime error\n\nThis is a sample test from the problem\
-    \ statement!\n\nTest input:\nconfig-path /something/there config-format json\n\
-    Correct output:\nconfig-path=/something/there\nconfig-format=json\n\nYour code\
-    \ output:\n\n\nError:\nException in thread \"main\" java.lang.ArrayIndexOutOfBoundsException:\
-    \ Index 4 out of bounds for length 4\n\tat Problem.main(Main.java:13)\n\tat Main.main(Main.java:34)\n"
-  time: Thu, 03 Sep 2020 05:06:41 UTC
+  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/3336">JetBrains
+    Academy</a></html>
+  time: Tue, 08 Sep 2020 03:24:34 UTC
 record: -1
