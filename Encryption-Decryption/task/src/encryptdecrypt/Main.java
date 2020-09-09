@@ -17,7 +17,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         String operation = input.nextLine();
-        char[] chars = input.nextLine().toCharArray();
+        char[] chars = input.
+                nextLine().toCharArray();
         int key = input.nextInt();
 
         if(operation.equals("enc")){
