@@ -11,39 +11,63 @@ of the English alphabet
  */
 package encryptdecrypt;
 
-import java.util.Scanner;
-
+/*
+    TODO
+       - The program must parse three arguments: -mode, -key and -data.
+            The first argument should determine the program’s mode (enc for encryption, dec for decryption).
+            The second argument is an integer key to modify the message,
+            and the third argument is a text or ciphertext to encrypt or decrypt.
+       - Test 
+ */
+/*
+for the part where parameters dont come in a set order just use this and put a conditional on the args[i]
+        for (int i = 0; i < args.length - 1; i += 2) {
+            System.out.println(args[i] + "=" + args[i + 1]);
+        }
+ */
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        String operation = input.nextLine();
-        char[] chars = input.
-                nextLine().toCharArray();
-        int key = input.nextInt();
+        //set with default parameters per instructions
+        String mode = "enc";
+        int key = 0;
+        char[] chars = {};//presume data is an empty string?
+        for (int i = 0; i < args.length - 1; i += 2) {
+            if (args[i].equals("-mode")) {
+                mode = args[i + 1];
+            } else if (args[i].equals("-key")) {
+                key = Integer.valueOf(args[i + 1]);
+            } else if (args[i].equals("-data")) {
+                chars = args[i + 1].toCharArray();
+//                for (int j = 0; i < args[i + 1].length(); j++) {
+//                    chars[j] +=
+//                }
+            }
+        }
 
-        if(operation.equals("enc")){
-            System.out.println(encrypt(chars,key));
-        }else if(operation.equals("dec")){
-            System.out.println(decrypt(chars,key));
+
+        if (mode.equals("enc")) {
+            System.out.println(encrypt(chars, key));
+        } else if (mode.equals("dec")) {
+            System.out.println(decrypt(chars, key));
         }
 
     }
 
-    public static String decrypt(char[]_chars, int _key){
+    public static String decrypt(char[] _chars, int _key) {
         //method for decrypt
         char nullChar = 0;//beginning of base ASCII table
         char delChar = 127;//ending of base ASCII table
         int size = 128;
         String result = "";
         //for-each loop for decrypting chars array
-        for(char item : _chars){
-            char shiftItem = (char)(((item + nullChar - _key) % size) - nullChar);
+        for (char item : _chars) {
+            char shiftItem = (char) (((item + nullChar - _key) % size) - nullChar);
             result += shiftItem;
         }
         return result;
     }
 
-    public static String encrypt(char[] _chars, int _key){
+    public static String encrypt(char[] _chars, int _key) {
         //method for encrypt
         char nullChar = 0; // \0
         char delChar = 127;// 007F
@@ -51,8 +75,8 @@ public class Main {
         String result = "";
         //for-each loop for encrypting chars array
         for (char item : _chars) {
-                char shiftItem = (char) (((item - nullChar + _key) % size) + nullChar);
-                result += shiftItem;
+            char shiftItem = (char) (((item - nullChar + _key) % size) + nullChar);
+            result += shiftItem;
         }
         return result;
     }
