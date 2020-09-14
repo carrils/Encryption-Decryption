@@ -138,13 +138,9 @@ files:
     }
   learner_created: true
 feedback_link: https://hyperskill.org/projects/46/stages/248/implement
-status: Failed
+status: Solved
 feedback:
-  message: "Exception in test #1\n\nProbably your program run out of input (Scanner\
-    \ tried to read more than expected).\n\njava.util.NoSuchElementException: No line\
-    \ found\n\tat java.base/java.util.Scanner.nextLine(Scanner.java:1651)\n\tat encryptdecrypt.Main.main(Main.java:20)\n\
-    \nPlease find below the output of your program during this failed test.\nNote\
-    \ that the &#39;&gt;&#39; character indicates the beginning of the input line.\n\
-    \n---\n\nArguments: -mode enc -key 5 -data Welcome to hyperskill!\n\n&gt;"
-  time: Tue, 08 Sep 2020 03:19:26 UTC
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/46/stages/248/implement">JetBrains
+    Academy</a>
+  time: Mon, 14 Sep 2020 01:46:20 UTC
 record: -1

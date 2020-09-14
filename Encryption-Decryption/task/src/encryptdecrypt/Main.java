@@ -11,26 +11,12 @@ of the English alphabet
  */
 package encryptdecrypt;
 
-/*
-    TODO
-       - The program must parse three arguments: -mode, -key and -data.
-            The first argument should determine the program’s mode (enc for encryption, dec for decryption).
-            The second argument is an integer key to modify the message,
-            and the third argument is a text or ciphertext to encrypt or decrypt.
-       - Test 
- */
-/*
-for the part where parameters dont come in a set order just use this and put a conditional on the args[i]
-        for (int i = 0; i < args.length - 1; i += 2) {
-            System.out.println(args[i] + "=" + args[i + 1]);
-        }
- */
 public class Main {
     public static void main(String[] args) {
         //set with default parameters per instructions
         String mode = "enc";
         int key = 0;
-        char[] chars = {};//presume data is an empty string?
+        char[] chars = {};//presume data is an empty string
         for (int i = 0; i < args.length - 1; i += 2) {
             if (args[i].equals("-mode")) {
                 mode = args[i + 1];
@@ -38,12 +24,8 @@ public class Main {
                 key = Integer.valueOf(args[i + 1]);
             } else if (args[i].equals("-data")) {
                 chars = args[i + 1].toCharArray();
-//                for (int j = 0; i < args[i + 1].length(); j++) {
-//                    chars[j] +=
-//                }
             }
         }
-
 
         if (mode.equals("enc")) {
             System.out.println(encrypt(chars, key));
