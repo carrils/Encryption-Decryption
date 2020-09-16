@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Encryption-Decryption/task" />
+            <option value="$PROJECT_DIR$/Problems/Accounts" />
             <option value="$PROJECT_DIR$/Problems/Adding values" />
             <option value="$PROJECT_DIR$/Problems/Advanced calculator" />
             <option value="$PROJECT_DIR$/Problems/Basic calculator" />
