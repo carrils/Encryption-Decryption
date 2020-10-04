@@ -4,7 +4,11 @@ import java.io.File;
 
 public class SumFromFile {
     public static void main(String[] args){
-        File dataset = new File("/Users/sam/IdeaProjects/Encryption-Decryption/Problems/Are siblings?/src/dataset_91033.txt");
+        /*This will only work if the .txt file is
+        * in the root directory of your project!
+        * otherwise is is necessary to specify the absolute path:
+        * /Users/sam/IdeaProjects/Encryption-Decryption/Problems/Are siblings?/src/dataset_91033.txt */
+        File dataset = new File("dataset_91033.txt");
         int total = 0;
         try{
             Scanner input = new Scanner(dataset);
