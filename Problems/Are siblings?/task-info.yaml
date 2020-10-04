@@ -12,6 +12,12 @@ files:
         }
     }
   learner_created: false
+- name: src/SumFromFile.java
+  visible: true
+  learner_created: true
+- name: src/dataset_91033.txt
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/8095
 status: Solved
 feedback:
