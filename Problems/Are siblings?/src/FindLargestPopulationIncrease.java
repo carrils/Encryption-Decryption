@@ -11,6 +11,8 @@ public class FindLargestPopulationIncrease {
         int i = 0;
         long tempPop = 0; //tempPop variable to hold previous population
         long previousPopulation = 0;
+        long diff = 0;
+        int year = 0;
         try {
             Scanner input = new Scanner(populationData);
 
@@ -20,17 +22,18 @@ public class FindLargestPopulationIncrease {
                     //int population = Integer.parseInt(fileLine[1].replaceAll(",",""));//NFE
                     String[] fileLine = input.nextLine().split("\t");
                     long tempDiff = 0;
-                    long diff = 0;
+
                     if (i >= 1) {
                         //skip header of file
                         tempPop = (long) NumberFormat.getNumberInstance(Locale.US).parse(fileLine[1]);
-                        System.out.println(tempPop);
+                        //System.out.println(tempPop);
                         if (previousPopulation != 0) {
                             //start calculating population increases
                             tempDiff = tempPop - previousPopulation;
                             if(tempDiff > diff){
-                                //find the biggest population increase
+                                //find the biggest population increase and which year
                                 diff = tempDiff;
+                                year = Integer.parseInt(fileLine[0]);
                             }
                         }
                     }
@@ -43,7 +46,8 @@ public class FindLargestPopulationIncrease {
         } catch (FileNotFoundException e) {
             //every time you pass Scanner a File you must handle FNFE
             System.out.println("File not found: " + populationData.getName());
+        }finally{
+            System.out.println("Biggest population jump: "+ year + ", by " + diff);
         }
-
     }
 }
