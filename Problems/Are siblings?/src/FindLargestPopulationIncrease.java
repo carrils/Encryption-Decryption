@@ -1,3 +1,12 @@
+/*
+Sam Carrillo
+10.06.20
+-------------
+This program takes in a file with
+a specific data set and format and
+finds the year in that data set with
+the highest population growth
+ */
 import java.io.File;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -9,9 +18,9 @@ public class FindLargestPopulationIncrease {
     public static void main(String[] args) {
         File populationData = new File("dataset_91069.txt");
         int i = 0;
-        long tempPop = 0; //tempPop variable to hold previous population
+        long population = 0; //population variable to hold previous population
         long previousPopulation = 0;
-        long diff = 0;
+        long populationDiff = 0;
         int year = 0;
         try {
             Scanner input = new Scanner(populationData);
@@ -25,14 +34,14 @@ public class FindLargestPopulationIncrease {
 
                     if (i >= 1) {
                         //skip header of file
-                        tempPop = (long) NumberFormat.getNumberInstance(Locale.US).parse(fileLine[1]);
-                        //System.out.println(tempPop);
+                        population = (long) NumberFormat.getNumberInstance(Locale.US).parse(fileLine[1]);
+                        //System.out.println(population);
                         if (previousPopulation != 0) {
                             //start calculating population increases
-                            tempDiff = tempPop - previousPopulation;
-                            if(tempDiff > diff){
+                            tempDiff = population - previousPopulation;
+                            if(tempDiff > populationDiff){
                                 //find the biggest population increase and which year
-                                diff = tempDiff;
+                                populationDiff = tempDiff;
                                 year = Integer.parseInt(fileLine[0]);
                             }
                         }
@@ -41,13 +50,13 @@ public class FindLargestPopulationIncrease {
                     System.out.println("<Unparseable line>");
                 }
                 i++;
-                previousPopulation = tempPop;
+                previousPopulation = population;
             }
         } catch (FileNotFoundException e) {
-            //every time you pass Scanner a File you must handle FNFE
+            //every time you pass Scanner a File you must handle File not found exception
             System.out.println("File not found: " + populationData.getName());
         }finally{
-            System.out.println("Biggest population jump: "+ year + ", by " + diff);
+            System.out.println("Biggest population jump: "+ year + ", by " + populationDiff);
         }
     }
 }
