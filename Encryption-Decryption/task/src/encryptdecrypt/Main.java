@@ -11,8 +11,13 @@ of the English alphabet
  */
 package encryptdecrypt;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,8 +28,8 @@ public class Main {
         boolean usingData = false;
         boolean usingIn = false;
         boolean hasOut = false;
-        String inputFile = ""; //should these be strings for the file names or actually files
-        String outPutFile = ""; //same^ and null?
+        String inputFileName = ""; //should these be strings for the file names or actually files
+        String outPutFileName = ""; //same^ and null?
 
         //parameter processing
         for (int i = 0; i < args.length - 1; i += 2) {
@@ -36,60 +41,93 @@ public class Main {
 //            } else if (args[i].equals("-data")) {
 //                chars = args[i + 1].toCharArray();
 //            }
-            //If there is no -mode, the program should work in enc mode.
-            //If there is no -key, the program should consider that key = 0.
-            //If there is no -data, and there is no -in the program should assume that the data is an empty string.
+
             //If there is no -out argument, the program must print data to the standard output.
-            //If there are both -data and -in arguments, your program should prefer -data over -in. (
+            //If there are both -data and -in arguments, your program should prefer -data over -in.
             switch (args[i]) {
                 case "-mode":
                     mode = args[i + 1];
                     break;
                 case "-key":
-                    key = Integer.valueOf(args[i + 1]);
+                    key = Integer.parseInt(args[i + 1]);
                     break;
                 case "-data":
                     usingData = true;
                     chars = args[i + 1].toCharArray();
                     break;
                 case "-in":
-                    //order might matter as in if -in before -data it would see usingdata as false
+                    //order might matter as in if -in before -data it would see usingData as false
                     //only has to initialize the file.
                     //the try catch will be in the doing portion
                     usingIn = true;
-                    inputFile = args[i + 1];
+                    inputFileName = args[i + 1];
 
                     break;
                 case "-out":
-                    //mkdir i think
                     hasOut = true;
-                    outPutFile = args[i] + 1;
+                    outPutFileName = args[i] + 1;
                     break;
             }
         }
 
         //doing portion
-        if (mode.equals("enc")) {
-            //System.out.println(encrypt(chars, key));
-            if (usingData && usingIn) {
-                //go into Data processing
-                encrypt(chars, key);
-                if (hasOut) {
-                    try {
-                        PrintWriter output = new PrintWriter(outPutFile);
-                    }  catch (FileNotFoundException e){
-                        System.out.println("Error: " + e.getMessage());
+        try {
+            //[ENCRYPT]
+            if (mode.equals("enc")) {
+                //System.out.println(encrypt(chars, key));
+                if (usingData && usingIn) {
+                    if (hasOut) {
+                        PrintWriter writer = new PrintWriter(outPutFileName);
+                        writer.println(encrypt(chars, key));
+                    } else if (usingIn) {
+                        System.out.println(encrypt(chars, key));
+                    } else {
+                        //If there is no -data, and there is no -in the program should assume that the data is an empty string.
                     }
+                } else if (usingIn) {
+                    //encrypt(input file > string > char array, key)
+                    if (hasOut) {
+                        PrintWriter writer = new PrintWriter(outPutFileName);
+                        //write to outfile the encrypted string of infile
+                        writer.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
+                    } else {
+                        System.out.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
+                    }
+                }
+                //[DECRYPT]
+            } else if (mode.equals("dec")) {
+                //System.out.println(decrypt(chars, key));
+                if (usingData && usingIn) {
+                    if (hasOut) {
+                        PrintWriter writer = new PrintWriter(outPutFileName);
+                        writer.println(decrypt(chars, key));
+                    } else {
+                        System.out.println(decrypt(chars, key));
+                    }
+                } else if (usingIn) {
+                    if (hasOut) {
+                        PrintWriter writer = new PrintWriter(outPutFileName);
+                        //write to outfile the decrypted string on infile
+                        writer.println(decrypt(readFileAsString(inputFileName).toCharArray(), key));
+                    } else {
+                        System.out.println(decrypt(readFileAsString(inputFileName).toCharArray(), key));
+                    }
+                } else {
+                    //If there is no -data, and there is no -in the program should assume that the data is an empty string.
                 }
             }
 
-        } else if (mode.equals("dec")) {
-            //System.out.println(decrypt(chars, key));
+        } catch (FileNotFoundException e) {
+            System.err.println("Error: File not found, " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error: IOException, " + e.getMessage());
+        } finally {
+
         }
 
     }
 
-    public static void decrypt(char[] _chars, int _key) {
+    public static String decrypt(char[] _chars, int _key) {
         //method for decrypt
         char nullChar = 0;//beginning of base ASCII table
         char delChar = 127;//ending of base ASCII table
@@ -100,10 +138,10 @@ public class Main {
             char shiftItem = (char) (((item + nullChar - _key) % size) - nullChar);
             result += shiftItem;
         }
-        //return result;
+        return result;
     }
 
-    public static void encrypt(char[] _chars, int _key) {
+    public static String encrypt(char[] _chars, int _key) {
         //method for encrypt
         char nullChar = 0; // \0
         char delChar = 127;// 007F
@@ -114,6 +152,11 @@ public class Main {
             char shiftItem = (char) (((item - nullChar + _key) % size) + nullChar);
             result += shiftItem;
         }
-        //return result;
+        return result;
+    }
+
+    public static String readFileAsString(String fileName) throws IOException {
+        //returns all text of a file as a single string
+        return new String(Files.readAllBytes(Paths.get(fileName)));
     }
 }
