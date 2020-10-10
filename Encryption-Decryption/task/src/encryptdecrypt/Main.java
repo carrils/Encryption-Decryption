@@ -79,6 +79,7 @@ public class Main {
                     if (hasOut) {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         writer.println(encrypt(chars, key));
+                        System.out.println("printed with printwriter to: " + outPutFileName);
                     } else if (usingIn) {
                         System.out.println(encrypt(chars, key));
                     } else {
@@ -90,8 +91,10 @@ public class Main {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         //write to outfile the encrypted string of infile
                         writer.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
+                        System.out.println("printed with printwriter to: " + outPutFileName);
                     } else {
                         System.out.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
+                        System.out.println("printed with printwriter to: " + outPutFileName);
                     }
                 }
                 //[DECRYPT]
@@ -101,6 +104,7 @@ public class Main {
                     if (hasOut) {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         writer.println(decrypt(chars, key));
+                        System.out.println("printed with printwriter to: " + outPutFileName);
                     } else {
                         System.out.println(decrypt(chars, key));
                     }
@@ -109,8 +113,10 @@ public class Main {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         //write to outfile the decrypted string on infile
                         writer.println(decrypt(readFileAsString(inputFileName).toCharArray(), key));
+                        System.out.println("printed with printwriter to: " + outPutFileName);
                     } else {
                         System.out.println(decrypt(readFileAsString(inputFileName).toCharArray(), key));
+                        System.out.println("printed with printwriter to: " + outPutFileName);
                     }
                 } else {
                     //If there is no -data, and there is no -in the program should assume that the data is an empty string.
