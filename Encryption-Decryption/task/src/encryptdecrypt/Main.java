@@ -19,6 +19,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+/*
+    TODO:
+    - Fix readFileAsString to not return -out1 *
+         - The issue is not the parameter parsing or the doing section but that method *
+    - Figure out why we are writing nothing to output.txt
+ */
+
 public class Main {
     public static void main(String[] args) {
         //set with default parameters per instructions
@@ -69,7 +76,7 @@ public class Main {
                     break;
                 case "-out":
                     hasOut = true;
-                    outPutFileName = args[i] + 1;
+                    outPutFileName = args[i + 1];
                     break;
             }
         }
@@ -96,9 +103,11 @@ public class Main {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         //write to outfile the encrypted string of infile
                         writer.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
+                        //encryptFile(inputFileName, outPutFileName, key);
                         System.out.println("printed with printwriter to 2: " + outPutFileName);
+
                     } else {
-                        System.out.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
+                        //System.out.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
                         System.out.println("printed with printwriter to 3: " + outPutFileName);
                     }
                 }
@@ -117,10 +126,10 @@ public class Main {
                     if (hasOut) {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         //write to outfile the decrypted string on infile
-                        writer.println(decrypt(readFileAsString(inputFileName).toCharArray(), key));
+                        //writer.println(decrypt(readFileAsString(inputFileName).toCharArray(), key));
                         System.out.println("printed with printwriter to 6: " + outPutFileName);
                     } else {
-                        System.out.println(decrypt(readFileAsString(inputFileName).toCharArray(), key));
+                        //System.out.println(decrypt(readFileAsString(inputFileName).toCharArray(), key));
                         System.out.println("printed with printwriter to 7: " + outPutFileName);
                     }
                 } else {
@@ -165,10 +174,38 @@ public class Main {
         }
         return result;
     }
-
     public static String readFileAsString(String fileName) throws IOException {
         //returns all text of a file as a single string
+        //return new String(Files.readAllBytes(Paths.get(fileName)));
         String result = new String(Files.readAllBytes(Paths.get(fileName)));//store in result and return result var
         return result;
     }
+
+
+//    public static void encryptFile(String inputFileName, String outputFileName, int _key) {
+//        //returns all text of a file as a single string
+//        //String result = new String(Files.readAllBytes(Paths.get(fileName)));//store in result and return result var
+//
+//        //it is in this method that you use the actual encrypt decrypt methods
+//        //because this is where we are going to iterate through all lines of a file
+//        File inputFile = new File(inputFileName);
+//        File outputFile = new File(outputFileName);
+//        try(Scanner input = new Scanner(inputFile)){
+//            PrintWriter output = new PrintWriter(outputFile);
+//            while(input.hasNext()){
+//                char nullChar = 0; // \0
+//                char delChar = 127;// 007F
+//                int size = 128;
+//                String result = "";
+//                char[] fileLine = input.next().toCharArray();
+//                for (char item : fileLine) {
+//                    char shiftItem = (char) (((item - nullChar + _key) % size) + nullChar);
+//                    result += shiftItem;
+//                }
+//                output.println(result);
+//            }
+//        }catch(FileNotFoundException e){
+//            System.err.println("File not found: " + e.getMessage());
+//        }
+//    }
 }

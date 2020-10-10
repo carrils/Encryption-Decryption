@@ -179,6 +179,26 @@ files:
         }
     }
   learner_created: true
+- name: -out1
+  visible: true
+  learner_created: true
+- name: output.txt
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/46/stages/249/implement
-status: Unchecked
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #1
+
+    Wrong result in the file!
+
+    Please find below the output of your program during this failed test.
+
+    ---
+
+    Arguments: -mode enc -key 5 -in in.txt -out output.txt
+
+    printed with printwriter to 2: output.txt
+  time: Sat, 10 Oct 2020 16:27:54 UTC
 record: -1
