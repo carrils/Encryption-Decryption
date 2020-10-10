@@ -31,6 +31,10 @@ public class Main {
         String inputFileName = ""; //should these be strings for the file names or actually files
         String outPutFileName = ""; //same^ and null?
 
+//        for(int e = 0; e < args.length; e++){
+//            System.out.println(args[e]);
+//        }
+
         //parameter processing
         for (int i = 0; i < args.length - 1; i += 2) {
             //change to case switch?
@@ -70,6 +74,7 @@ public class Main {
             }
         }
 
+
         //doing portion
         try {
             //[ENCRYPT]
@@ -79,7 +84,7 @@ public class Main {
                     if (hasOut) {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         writer.println(encrypt(chars, key));
-                        System.out.println("printed with printwriter to: " + outPutFileName);
+                        System.out.println("printed with printwriter to 1: " + outPutFileName);
                     } else if (usingIn) {
                         System.out.println(encrypt(chars, key));
                     } else {
@@ -91,10 +96,10 @@ public class Main {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         //write to outfile the encrypted string of infile
                         writer.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
-                        System.out.println("printed with printwriter to: " + outPutFileName);
+                        System.out.println("printed with printwriter to 2: " + outPutFileName);
                     } else {
                         System.out.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
-                        System.out.println("printed with printwriter to: " + outPutFileName);
+                        System.out.println("printed with printwriter to 3: " + outPutFileName);
                     }
                 }
                 //[DECRYPT]
@@ -104,7 +109,7 @@ public class Main {
                     if (hasOut) {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         writer.println(decrypt(chars, key));
-                        System.out.println("printed with printwriter to: " + outPutFileName);
+                        System.out.println("printed with printwriter to 4: " + outPutFileName);
                     } else {
                         System.out.println(decrypt(chars, key));
                     }
@@ -113,10 +118,10 @@ public class Main {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         //write to outfile the decrypted string on infile
                         writer.println(decrypt(readFileAsString(inputFileName).toCharArray(), key));
-                        System.out.println("printed with printwriter to: " + outPutFileName);
+                        System.out.println("printed with printwriter to 6: " + outPutFileName);
                     } else {
                         System.out.println(decrypt(readFileAsString(inputFileName).toCharArray(), key));
-                        System.out.println("printed with printwriter to: " + outPutFileName);
+                        System.out.println("printed with printwriter to 7: " + outPutFileName);
                     }
                 } else {
                     //If there is no -data, and there is no -in the program should assume that the data is an empty string.
@@ -163,6 +168,7 @@ public class Main {
 
     public static String readFileAsString(String fileName) throws IOException {
         //returns all text of a file as a single string
-        return new String(Files.readAllBytes(Paths.get(fileName)));
+        String result = new String(Files.readAllBytes(Paths.get(fileName)));//store in result and return result var
+        return result;
     }
 }
