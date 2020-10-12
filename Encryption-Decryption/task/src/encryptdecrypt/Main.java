@@ -11,10 +11,7 @@ of the English alphabet
  */
 package encryptdecrypt;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -102,8 +99,8 @@ public class Main {
                     if (hasOut) {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         //write to outfile the encrypted string of infile
-                        writer.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
-                        //encryptFile(inputFileName, outPutFileName, key);
+                        //writer.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
+                        encryptFile(inputFileName, outPutFileName, key);
                         System.out.println("printed with printwriter to 2: " + outPutFileName);
 
                     } else {
@@ -174,38 +171,38 @@ public class Main {
         }
         return result;
     }
-    public static String readFileAsString(String fileName) throws IOException {
-        //returns all text of a file as a single string
-        //return new String(Files.readAllBytes(Paths.get(fileName)));
-        String result = new String(Files.readAllBytes(Paths.get(fileName)));//store in result and return result var
-        return result;
-    }
-
-
-//    public static void encryptFile(String inputFileName, String outputFileName, int _key) {
+//    public static String readFileAsString(String fileName) throws IOException {
 //        //returns all text of a file as a single string
-//        //String result = new String(Files.readAllBytes(Paths.get(fileName)));//store in result and return result var
-//
-//        //it is in this method that you use the actual encrypt decrypt methods
-//        //because this is where we are going to iterate through all lines of a file
-//        File inputFile = new File(inputFileName);
-//        File outputFile = new File(outputFileName);
-//        try(Scanner input = new Scanner(inputFile)){
-//            PrintWriter output = new PrintWriter(outputFile);
-//            while(input.hasNext()){
-//                char nullChar = 0; // \0
-//                char delChar = 127;// 007F
-//                int size = 128;
-//                String result = "";
-//                char[] fileLine = input.next().toCharArray();
-//                for (char item : fileLine) {
-//                    char shiftItem = (char) (((item - nullChar + _key) % size) + nullChar);
-//                    result += shiftItem;
-//                }
-//                output.println(result);
-//            }
-//        }catch(FileNotFoundException e){
-//            System.err.println("File not found: " + e.getMessage());
-//        }
+//        //return new String(Files.readAllBytes(Paths.get(fileName)));
+//        String result = new String(Files.readAllBytes(Paths.get(fileName)));//store in result and return result var
+//        return result;
 //    }
+
+
+    public static void encryptFile(String inputFileName, String outputFileName, int _key) {
+        //it is in this method that you use the actual encrypt decrypt methods
+        //because this is where we are going to iterate through all lines of a file
+        File inputFile = new File(inputFileName);
+        File outputFile = new File(outputFileName);
+        try(Scanner input = new Scanner(inputFile)){
+            FileWriter output = new FileWriter(outputFile);
+            while(input.hasNext()){
+                char nullChar = 0; // \0
+                char delChar = 127;// 007F
+                int size = 128;
+                String result = "";
+                char[] fileLine = input.next().toCharArray();
+                for (char item : fileLine) {
+                    char shiftItem = (char) (((item - nullChar + _key) % size) + nullChar);
+                    result += shiftItem;
+                }
+                System.out.println(result);
+                output.write(result);
+            }
+        }catch(FileNotFoundException e){
+            System.err.println("File not found: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("IOException: " + e.getMessage());
+        }
+    }
 }
