@@ -18,8 +18,6 @@ import java.util.Scanner;
 
 /*
     TODO:
-    - Fix readFileAsString to not return -out1 *
-         - The issue is not the parameter parsing or the doing section but that method *
     - Figure out why we are writing nothing to output.txt
  */
 
@@ -29,27 +27,14 @@ public class Main {
         String mode = "enc";
         int key = 0;
         char[] chars = {};//presume data is an empty string
-        boolean usingData = false;
-        boolean usingIn = false;
+        boolean usingData = false;// usingIn redundant? could just be this one
+        boolean usingIn = false;// redundant?
         boolean hasOut = false;
-        String inputFileName = ""; //should these be strings for the file names or actually files
-        String outPutFileName = ""; //same^ and null?
-
-//        for(int e = 0; e < args.length; e++){
-//            System.out.println(args[e]);
-//        }
+        String inputFileName = "";
+        String outPutFileName = "";
 
         //parameter processing
         for (int i = 0; i < args.length - 1; i += 2) {
-            //change to case switch?
-//            if (args[i].equals("-mode")) {
-//                mode = args[i + 1];
-//            } else if (args[i].equals("-key")) {
-//                key = Integer.valueOf(args[i + 1]);
-//            } else if (args[i].equals("-data")) {
-//                chars = args[i + 1].toCharArray();
-//            }
-
             //If there is no -out argument, the program must print data to the standard output.
             //If there are both -data and -in arguments, your program should prefer -data over -in.
             switch (args[i]) {
@@ -64,9 +49,6 @@ public class Main {
                     chars = args[i + 1].toCharArray();
                     break;
                 case "-in":
-                    //order might matter as in if -in before -data it would see usingData as false
-                    //only has to initialize the file.
-                    //the try catch will be in the doing portion
                     usingIn = true;
                     inputFileName = args[i + 1];
 
@@ -77,7 +59,6 @@ public class Main {
                     break;
             }
         }
-
 
         //doing portion
         try {
@@ -198,11 +179,13 @@ public class Main {
                 }
                 System.out.println(result);
                 output.write(result);
+                output.close();
             }
         }catch(FileNotFoundException e){
             System.err.println("File not found: " + e.getMessage());
         } catch (IOException e) {
             System.err.println("IOException: " + e.getMessage());
+        }finally {
         }
     }
 }
