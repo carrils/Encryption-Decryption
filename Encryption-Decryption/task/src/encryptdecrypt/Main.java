@@ -11,15 +11,18 @@ of the English alphabet
  */
 package encryptdecrypt;
 
+/*
+ToDo
+- find out why we are not encrypting spaces in method for encrypting files
+original: Welcome to hyperskill!
+correct: \jqhtrj%yt%m~ujwxpnqq&
+incorrect: \jqhtrjytm~ujwxpnqq&  <-- missing %'s for spaces, what we have now
+ */
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
-
-/*
-    TODO:
-    - Figure out why we are writing nothing to output.txt
- */
 
 public class Main {
     public static void main(String[] args) {
@@ -64,43 +67,51 @@ public class Main {
         try {
             //[ENCRYPT]
             if (mode.equals("enc")) {
-                //System.out.println(encrypt(chars, key));
+                PrintWriter writer = new PrintWriter(outPutFileName);
                 if (usingData && usingIn) {
+                    //both using in and data
                     if (hasOut) {
-                        PrintWriter writer = new PrintWriter(outPutFileName);
                         writer.println(encrypt(chars, key));
                         System.out.println("printed with printwriter to 1: " + outPutFileName);
-                    } else if (usingIn) {
-                        System.out.println(encrypt(chars, key));
                     } else {
-                        //If there is no -data, and there is no -in the program should assume that the data is an empty string.
+                        System.out.println(encrypt(chars, key));
+                        System.out.println("printed with printwriter to 2: " + outPutFileName);
                     }
                 } else if (usingIn) {
-                    //encrypt(input file > string > char array, key)
+                    //in only
                     if (hasOut) {
-                        PrintWriter writer = new PrintWriter(outPutFileName);
+                        //PrintWriter writer = new PrintWriter(outPutFileName);
                         //write to outfile the encrypted string of infile
-                        //writer.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
-                        encryptFile(inputFileName, outPutFileName, key);
-                        System.out.println("printed with printwriter to 2: " + outPutFileName);
-
-                    } else {
-                        //System.out.println(encrypt(readFileAsString(inputFileName).toCharArray(), key));
+                        encryptFile(inputFileName, outPutFileName, key, true);
                         System.out.println("printed with printwriter to 3: " + outPutFileName);
+                    } else {
+                        //System.out.println(encrypt(chars, key));//this is from -data and not -in
+                        encryptFile(inputFileName, outPutFileName, key, false);
+                        System.out.println("printed with printwriter to 4: " + outPutFileName);
+                    }
+                } else{
+                    //case where no data and no in
+                    //If there is no -data, and there is no -in
+                    //the program should assume that the data is an empty string.
+                    if(hasOut) {
+                        writer.println(chars);
+                    }else{
+                        System.out.println(chars);
                     }
                 }
                 //[DECRYPT]
             } else if (mode.equals("dec")) {
-                //System.out.println(decrypt(chars, key));
                 if (usingData && usingIn) {
+                    //using bother in and data
                     if (hasOut) {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         writer.println(decrypt(chars, key));
-                        System.out.println("printed with printwriter to 4: " + outPutFileName);
+                        System.out.println("printed with printwriter to 5: " + outPutFileName);
                     } else {
                         System.out.println(decrypt(chars, key));
                     }
                 } else if (usingIn) {
+                    //using in only
                     if (hasOut) {
                         PrintWriter writer = new PrintWriter(outPutFileName);
                         //write to outfile the decrypted string on infile
@@ -119,10 +130,7 @@ public class Main {
             System.err.println("Error: File not found, " + e.getMessage());
         } catch (IOException e) {
             System.err.println("Error: IOException, " + e.getMessage());
-        } finally {
-
         }
-
     }
 
     public static String decrypt(char[] _chars, int _key) {
@@ -160,11 +168,14 @@ public class Main {
 //    }
 
 
-    public static void encryptFile(String inputFileName, String outputFileName, int _key) {
-        //it is in this method that you use the actual encrypt decrypt methods
-        //because this is where we are going to iterate through all lines of a file
+    public static void encryptFile(String inputFileName, String outputFileName, int _key, boolean usingOut) {
+        //make this return string so that we can use this on scenario:
+            //-in but no -out, that way we can print the string <---- here
+            //and write the string, -in and -out <----- here
+        //could just add flag to see if it is has an -out and if so write, if not print
         File inputFile = new File(inputFileName);
         File outputFile = new File(outputFileName);
+        String fileString = "";
         try(Scanner input = new Scanner(inputFile)){
             FileWriter output = new FileWriter(outputFile);
             while(input.hasNext()){
@@ -177,15 +188,43 @@ public class Main {
                     char shiftItem = (char) (((item - nullChar + _key) % size) + nullChar);
                     result += shiftItem;
                 }
-                System.out.println(result);
-                output.write(result);
-                output.close();
+                if(usingOut){
+                    output.write(result);
+                }else{
+                    System.out.print(result); //<--- here is the string return
+                }
             }
+            output.close();
         }catch(FileNotFoundException e){
             System.err.println("File not found: " + e.getMessage());
         } catch (IOException e) {
             System.err.println("IOException: " + e.getMessage());
-        }finally {
+        }
+    }
+
+    public static void decryptfile(String inputFileName, String outputFileName, int _key){
+        File inputFile = new File(inputFileName);
+        File outputFile = new File(outputFileName);
+        try(Scanner input = new Scanner(inputFile)){
+            FileWriter output = new FileWriter(outputFile);
+            while(input.hasNext()){
+                char nullChar = 0; // \0
+                char delChar = 127;// 007F
+                int size = 128;
+                String result = "";
+                char[] fileLine = input.next().toCharArray();
+                for (char item : fileLine) {
+                    char shiftItem = (char) (((item + nullChar - _key) % size) - nullChar);
+                    result += shiftItem;
+                }
+                System.out.println(result);
+                output.write(result);
+            }
+            output.close();
+        }catch(FileNotFoundException e){
+            System.err.println("File not found: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("IOException: " + e.getMessage());
         }
     }
 }
