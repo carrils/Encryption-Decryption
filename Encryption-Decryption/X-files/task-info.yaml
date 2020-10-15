@@ -179,20 +179,13 @@ files:
         }
     }
   learner_created: true
-- name: -out1
-  visible: true
-  learner_created: true
 - name: output.txt
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/projects/46/stages/249/implement
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #1
-
-    Wrong result in the file!
-
-    Arguments: -mode enc -key 5 -in in.txt -out output.txt
-  time: Wed, 14 Oct 2020 00:26:05 UTC
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/46/stages/249/implement">JetBrains
+    Academy</a>
+  time: Thu, 15 Oct 2020 02:32:20 UTC
 record: -1

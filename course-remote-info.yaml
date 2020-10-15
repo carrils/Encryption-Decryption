@@ -18,7 +18,7 @@ stages:
   is_completed: true
 - id: 249
   step: 5391
-  is_completed: false
+  is_completed: true
 - id: 250
   step: 5392
   is_completed: false
@@ -34,7 +34,7 @@ topics:
     theory_id: 3749
   1:
   - title: IDE
-    theory_id: 3805
+    theory_id: 10996
   - title: Types and variables
     theory_id: 3518
   - title: Primitive and reference types
@@ -107,6 +107,8 @@ topics:
     theory_id: 3746
   - title: Command-line arguments
     theory_id: 3566
+  - title: IntelliJ Run Configurations
+    theory_id: 10630
   4:
   - title: Introduction to OOP
     theory_id: 3614
