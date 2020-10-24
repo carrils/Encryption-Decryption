@@ -7,7 +7,7 @@
       <excludeFolder url="file://$MODULE_DIR$/../../../../Encryption-Decryption/task/build" />
       <excludeFolder url="file://$MODULE_DIR$/../../../../Encryption-Decryption/task/out" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="15" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

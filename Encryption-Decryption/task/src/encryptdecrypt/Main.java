@@ -17,7 +17,11 @@ package encryptdecrypt;
 
 import java.io.*;
 import java.util.Scanner;
-
+/*
+TODO:
+- make it so you do not have to use absolute file paths on -in and -out when running from CLI
+- add in different algorithm functionality i.e shift or hash etc etc.
+ */
 public class Main {
     public static void main(String[] args) {
         String mode = "enc";
