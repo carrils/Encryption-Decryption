@@ -39,6 +39,7 @@
             <option value="$PROJECT_DIR$/Problems/Employees" />
             <option value="$PROJECT_DIR$/Problems/Even or odd" />
             <option value="$PROJECT_DIR$/Problems/Fill the declaration" />
+            <option value="$PROJECT_DIR$/Problems/Find mistake" />
             <option value="$PROJECT_DIR$/Problems/Fix compile-time errors" />
             <option value="$PROJECT_DIR$/Problems/Fix the non-compiled hierarchy" />
             <option value="$PROJECT_DIR$/Problems/Fix the program" />
@@ -66,6 +67,7 @@
             <option value="$PROJECT_DIR$/Problems/Print &quot;We are robots!&quot;" />
             <option value="$PROJECT_DIR$/Problems/Profit" />
             <option value="$PROJECT_DIR$/Problems/Project constants and methods" />
+            <option value="$PROJECT_DIR$/Problems/Publication and its subclasses" />
             <option value="$PROJECT_DIR$/Problems/Publications" />
             <option value="$PROJECT_DIR$/Problems/Saying animals" />
             <option value="$PROJECT_DIR$/Problems/Shapes area" />
