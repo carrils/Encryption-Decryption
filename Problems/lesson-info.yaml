@@ -72,3 +72,5 @@ content:
 - Find mistake
 - Publication and its subclasses
 - Mutable geometric shapes
+- Compact strings with AsciiCharSequence
+- Account Service
