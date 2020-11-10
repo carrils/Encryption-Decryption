@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="11.0.6" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -34,6 +34,7 @@
             <option value="$PROJECT_DIR$/Problems/Decrement all" />
             <option value="$PROJECT_DIR$/Problems/Digits from 0 to 9 in a single line" />
             <option value="$PROJECT_DIR$/Problems/Division" />
+            <option value="$PROJECT_DIR$/Problems/Division (1)" />
             <option value="$PROJECT_DIR$/Problems/Double characters" />
             <option value="$PROJECT_DIR$/Problems/Employees" />
             <option value="$PROJECT_DIR$/Problems/Even or odd" />
@@ -54,6 +55,7 @@
             <option value="$PROJECT_DIR$/Problems/Initializing an array of longs" />
             <option value="$PROJECT_DIR$/Problems/Inner boxes" />
             <option value="$PROJECT_DIR$/Problems/Inverse boolean flags" />
+            <option value="$PROJECT_DIR$/Problems/Max and Min" />
             <option value="$PROJECT_DIR$/Problems/Move the first N characters" />
             <option value="$PROJECT_DIR$/Problems/Movie" />
             <option value="$PROJECT_DIR$/Problems/Mutable geometric shapes" />

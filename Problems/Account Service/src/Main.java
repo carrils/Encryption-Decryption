@@ -68,7 +68,7 @@ class User {
 class AccountServiceImpl implements AccountService {
     Account[] accounts;
     public AccountServiceImpl (Account[] accountArray){
-        this.accounts = accountArray.clone();
+        accounts = accountArray;
     }
 
     @Override
