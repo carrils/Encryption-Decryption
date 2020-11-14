@@ -4,20 +4,18 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="delegatedBuild" value="false" />
-        <option name="testRunner" value="GRADLE" />
-        <option name="distributionType" value="WRAPPED" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Encryption-Decryption/task" />
             <option value="$PROJECT_DIR$/Problems/Account" />
+            <option value="$PROJECT_DIR$/Problems/Account Service" />
             <option value="$PROJECT_DIR$/Problems/Account and its owner" />
             <option value="$PROJECT_DIR$/Problems/Accounts" />
             <option value="$PROJECT_DIR$/Problems/Adding values" />
             <option value="$PROJECT_DIR$/Problems/Advanced calculator" />
-            <option value="$PROJECT_DIR$/Problems/Are siblings?" />
             <option value="$PROJECT_DIR$/Problems/Army" />
             <option value="$PROJECT_DIR$/Problems/Avoid division by zero" />
             <option value="$PROJECT_DIR$/Problems/Basic calculator" />
@@ -29,12 +27,16 @@
             <option value="$PROJECT_DIR$/Problems/Check the value" />
             <option value="$PROJECT_DIR$/Problems/Circle" />
             <option value="$PROJECT_DIR$/Problems/Classes for Hospital" />
+            <option value="$PROJECT_DIR$/Problems/Clock factory" />
+            <option value="$PROJECT_DIR$/Problems/Clocks" />
+            <option value="$PROJECT_DIR$/Problems/Compact strings with AsciiCharSequence" />
             <option value="$PROJECT_DIR$/Problems/Composite numbers" />
             <option value="$PROJECT_DIR$/Problems/Converting and multiplying" />
             <option value="$PROJECT_DIR$/Problems/Creating instances" />
             <option value="$PROJECT_DIR$/Problems/Decrement all" />
             <option value="$PROJECT_DIR$/Problems/Digits from 0 to 9 in a single line" />
             <option value="$PROJECT_DIR$/Problems/Division" />
+            <option value="$PROJECT_DIR$/Problems/Division (1)" />
             <option value="$PROJECT_DIR$/Problems/Double characters" />
             <option value="$PROJECT_DIR$/Problems/Employees" />
             <option value="$PROJECT_DIR$/Problems/Even or odd" />
@@ -54,27 +56,30 @@
             <option value="$PROJECT_DIR$/Problems/Initializing an array of characters" />
             <option value="$PROJECT_DIR$/Problems/Initializing an array of longs" />
             <option value="$PROJECT_DIR$/Problems/Inner boxes" />
-            <option value="$PROJECT_DIR$/Problems/IntBinaryOperation" />
             <option value="$PROJECT_DIR$/Problems/Inverse boolean flags" />
+            <option value="$PROJECT_DIR$/Problems/Max and Min" />
+            <option value="$PROJECT_DIR$/Problems/Motor static factory" />
+            <option value="$PROJECT_DIR$/Problems/Motors" />
             <option value="$PROJECT_DIR$/Problems/Move the first N characters" />
             <option value="$PROJECT_DIR$/Problems/Movie" />
+            <option value="$PROJECT_DIR$/Problems/Mutable geometric shapes" />
             <option value="$PROJECT_DIR$/Problems/Overloading methods" />
             <option value="$PROJECT_DIR$/Problems/Parameters and their values" />
             <option value="$PROJECT_DIR$/Problems/Patient needs a doctor" />
             <option value="$PROJECT_DIR$/Problems/Phone" />
+            <option value="$PROJECT_DIR$/Problems/Pick your team" />
             <option value="$PROJECT_DIR$/Problems/Preparing full name" />
             <option value="$PROJECT_DIR$/Problems/Print" />
-            <option value="$PROJECT_DIR$/Problems/Print &quot;Hello, Java!&quot;" />
-            <option value="$PROJECT_DIR$/Problems/Print &quot;We are robots!&quot;" />
             <option value="$PROJECT_DIR$/Problems/Profit" />
             <option value="$PROJECT_DIR$/Problems/Project constants and methods" />
             <option value="$PROJECT_DIR$/Problems/Publication and its subclasses" />
             <option value="$PROJECT_DIR$/Problems/Publications" />
+            <option value="$PROJECT_DIR$/Problems/Robot" />
             <option value="$PROJECT_DIR$/Problems/Saying animals" />
-            <option value="$PROJECT_DIR$/Problems/Shape hierarchy" />
             <option value="$PROJECT_DIR$/Problems/Shapes area" />
             <option value="$PROJECT_DIR$/Problems/Simulating a clock" />
             <option value="$PROJECT_DIR$/Problems/Sorting arrays" />
+            <option value="$PROJECT_DIR$/Problems/Static factory methods for Time" />
             <option value="$PROJECT_DIR$/Problems/String to double conversion" />
             <option value="$PROJECT_DIR$/Problems/The (un)-ordered sequence" />
             <option value="$PROJECT_DIR$/Problems/The count of numbers divisible by N" />
@@ -89,11 +94,10 @@
             <option value="$PROJECT_DIR$/Problems/Time" />
             <option value="$PROJECT_DIR$/Problems/Too many cats" />
             <option value="$PROJECT_DIR$/Problems/User" />
-            <option value="$PROJECT_DIR$/Problems/Users and WebSites" />
-            <option value="$PROJECT_DIR$/Problems/What's wrong?" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
+        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
   </component>

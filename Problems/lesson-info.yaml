@@ -27,15 +27,12 @@ content:
 - Division
 - Composite numbers
 - Fixing the main method
-- Print "Hello, Java!"
-- Print "We are robots!"
 - Inverse boolean flags
 - Adding values
 - Get first and last elements
 - Parameters and their values
 - Basic calculator
 - Advanced calculator
-- What's wrong?
 - Fix compile-time errors
 - Fix the program
 - Accounts
@@ -60,7 +57,6 @@ content:
 - String to double conversion
 - Catching some exceptions
 - Converting and multiplying
-- Are siblings?
 - Overloading methods
 - Print
 - Project constants and methods
@@ -75,6 +71,15 @@ content:
 - Publications
 - Find mistake
 - Publication and its subclasses
-- IntBinaryOperation
-- Users and WebSites
-- Shape hierarchy
+- Mutable geometric shapes
+- Compact strings with AsciiCharSequence
+- Account Service
+- Division (1)
+- Max and Min
+- Pick your team
+- Clock factory
+- Motor static factory
+- Static factory methods for Time
+- Clocks
+- Robot
+- Motors
