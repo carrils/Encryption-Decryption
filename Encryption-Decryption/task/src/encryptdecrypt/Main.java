@@ -1,6 +1,6 @@
 /*
 Sam Carrillo
-7.11.2020
+11.11.2020
 --------------
 This program is a multi-use encryption/decryption program.
 It can both encrypt and decrypt text. It can read and write cipher
