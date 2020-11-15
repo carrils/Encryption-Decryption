@@ -6,18 +6,22 @@ class Time {
     int minute;
     int second;
 
-    public Time(int hour, int minute, int second) {
-        this.hour = hour;
-        this.minute = minute;
-        this.second = second;
-    }
-
     public static Time noon() {
-        return new Time(12, 0, 0);
+        //instead, call the no arg constructor and return that after
+        //modifying the fields
+        Time time = new Time();
+        time.hour = 12;
+        time.minute = 0;
+        time.second = 0;
+        return time;
     }
 
     public static Time midnight() {
-        return new Time(0, 0, 0);
+        Time time = new Time();
+        time.hour = 0;
+        time.minute = 0;
+        time.second = 0;
+        return time;
     }
 
     public static Time ofSeconds(long seconds) {
@@ -28,12 +32,20 @@ class Time {
         remainingSeconds %= 60;
         int _seconds = remainingSeconds;
 
-        return new Time(hours, minutes, _seconds);
+        Time time = new Time();
+        time.hour = hours;
+        time.minute = minutes;
+        time.second = _seconds;
+        return time;
     }
 
     public static Time of(int hour, int minute, int second) {
         if (hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59 && second >= 0 && second <= 59) {
-            return new Time(hour, minute, second);
+            Time time = new Time();
+            time.hour = hour;
+            time.minute = minute;
+            time.second = second;
+            return time;
         } else {
             return null;
         }
