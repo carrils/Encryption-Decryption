@@ -21,6 +21,9 @@ import java.util.Scanner;
 TODO:
 - make it so you do not have to use absolute file paths on -in and -out when running from CLI
 - add in different algorithm functionality i.e shift or hash etc etc.
+    - moved encrypt and decrypt algs to separate classes (the class is the Context here) XX
+    - the algorithms of encryption/decryption are implementations of the Strategy interface XX
+    - make it so that in the client code it references the new abstract Encrypter and Decrypter classes and their objects of type <alg type>
  */
 public class Main {
     public static void main(String[] args) {
@@ -119,110 +122,6 @@ public class Main {
             }
         } catch (FileNotFoundException e) {
             System.err.println("Error: File not found, " + e.getMessage());
-        }
-    }
-
-    public static String decrypt(char[] _chars, int _key) {
-        //method for decrypt
-        char nullChar = 0;//beginning of base ASCII table
-        int size = 128;
-        String result = "";
-        //for-each loop for decrypting chars array
-        for (char item : _chars) {
-            //calculates ASCII value of character after shifting <key>, casts ASCII value back to char
-            char shiftItem = (char) (((item + nullChar - _key) % size) - nullChar);
-            //concatenate the shifted char back into the file line 'result'
-            result += shiftItem;
-        }
-        return result;
-    }
-
-    public static String encrypt(char[] _chars, int _key) {
-        //method for encrypt
-        char nullChar = 0; // \0
-        int size = 128;
-        String result = "";
-        //for-each loop for encrypting chars array
-        for (char item : _chars) {
-            //calculates ASCII value of character after shifting <key>, casts ASCII value back to char
-            char shiftItem = (char) (((item - nullChar + _key) % size) + nullChar);
-            //concatenate the shifted char back into the file line 'result'
-            result += shiftItem;
-        }
-        return result;
-    }
-
-    public static void encryptFile(String inputFileName, String outputFileName, int _key, boolean usingOut) {
-        //The encrypt method for files
-        //Takes 4 parameters, Encrypts according to key value and prints according to usingOut value
-        File inputFile = new File(inputFileName);
-        File outputFile = new File(outputFileName);
-
-        try (Scanner input = new Scanner(inputFile)) {
-            //can possibly clean this up? filewriter might be able to
-            //be cleaned up like scanner in the try()
-            FileWriter output = new FileWriter(outputFile);
-
-            while (input.hasNext()) {
-                //encrypt loop
-                char nullChar = 0; // \0
-                int size = 128;
-                String result = "";
-                char[] fileLine = input.nextLine().toCharArray();
-                for (char item : fileLine) {
-                    //calculates ASCII value of character after shifting <key>, casts ASCII value back to char
-                    char shiftItem = (char) (((item - nullChar + _key) % size) + nullChar);
-                    //concatenate the shifted char back into the file line 'result'
-                    result += shiftItem;
-                }
-                //print either to standard output or to file depending on boolean 'usingOut'
-                if (usingOut) {
-                    output.write(result);
-                } else {
-                    System.out.print(result);
-                }
-            }
-            output.close();
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found: " + e.getMessage());
-        } catch (IOException e) {
-            System.err.println("IOException: " + e.getMessage());
-        }
-    }
-
-    public static void decryptFile(String inputFileName, String outputFileName, int _key, boolean usingOut) {
-        //The encrypt method for files
-        //Takes 4 parameters, Encrypts according to key value and prints according to usingOut value
-        File inputFile = new File(inputFileName);
-        File outputFile = new File(outputFileName);
-        try (Scanner input = new Scanner(inputFile)) {
-            FileWriter output = new FileWriter(outputFile);
-
-            while (input.hasNext()) {
-                //encrypt loop
-                char nullChar = 0; // \0
-                char delChar = 127;// 007F
-                int size = 128;
-                String result = "";
-                char[] fileLine = input.next().toCharArray();
-                for (char item : fileLine) {
-                    //calculates ASCII value of character after shifting <key>, casts ASCII value back to char
-                    char shiftItem = (char) (((item + nullChar - _key) % size) - nullChar);
-                    //concatenate the shifted char back into the file line 'result'
-                    result += shiftItem;
-                }
-                //print either to standard output or to file depending on boolean 'usingOut'
-                if (usingOut) {
-                    output.write(result);
-                } else {
-                    System.out.print(result);
-                }
-            }
-            output.close();
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found: " + e.getMessage());
-        } catch (IOException e) {
-            System.err.println("IOException: " + e.getMessage());
         }
     }
 }
