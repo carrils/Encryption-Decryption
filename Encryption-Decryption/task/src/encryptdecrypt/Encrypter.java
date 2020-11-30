@@ -6,14 +6,22 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-interface Encryptor{
+//common strategy interface with one abstract method
+interface EncryptMethod{
     String encrypt(char[] _chars, int _key);
 }
+/*
+    Main difference between unicode and shift is that
+    shift only handles letters A-Za-z and not special characters.
+    Unicode does.
+ */
 
- class Encrypter implements Encryptor{
+//concrete strategy
+class UnicodeEncrypt implements EncryptMethod{
 
+     @Override
     public String encrypt(char[] _chars, int _key) {
-        //method for encrypt
+        //this is unicode algorithm
         char nullChar = 0; // \0
         int size = 128;
         String result = "";
@@ -27,6 +35,7 @@ interface Encryptor{
         return result;
     }
 
+    //this one might need to be another class that implements the csi "Encryptor"
     public static void encryptFile(String inputFileName, String outputFileName, int _key, boolean usingOut) {
         //The encrypt method for files
         //Takes 4 parameters, Encrypts according to key value and prints according to usingOut value
@@ -64,8 +73,52 @@ interface Encryptor{
             System.err.println("IOException: " + e.getMessage());
         }
     }
+}
 
-    public static void encrypt_NewAlg() {
+//concrete strategy
+class ShiftEncrypt implements EncryptMethod{
 
+    @Override
+    public String encrypt(char[] _chars, int _key) {
+        char a = 'a';
+        char A = 'A';
+        char z = 'z';
+        char Z = 'Z';
+        int size = 26;
+        String result = "";
+        //for-each encrypting the chars array
+        for(char item: _chars){
+            if (item >= a && item <= z){
+                char shiftItem = (char) (((item - a + _key) % size) + a);
+                result += shiftItem;
+            } else if (item >= A && item <= Z){
+                char shiftItem = (char) (((item - A + _key) % size) + A);
+                result += shiftItem;
+            }
+        }
+        return result;
+    }
+}
+
+//context
+class MessageEncrypter{
+    //the reference to the csi
+    private EncryptMethod method;
+
+    //allows us to change the method of encryption
+    public void setEncryptMethod(EncryptMethod method) {
+        this.method = method;
+    }
+
+    //this is the delegation of execution (encryption) to a concrete strategy through the csi
+    public void encrypt(char[] _chars, int _key){
+        /*
+        This right here is the special sauce and what makes Strategy as a design pattern good.
+        because the encryption method of each concrete strategy shares the
+        same name (encrypt) you can do this: this.method.encrypt(_chars, _key);
+        literally, the method <method> of type <EncryptMethod>, use the encrypt function common
+        between all concrete strategies on this set of chars using this key
+         */
+        this.method.encrypt(_chars, _key);
     }
 }

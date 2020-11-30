@@ -1,6 +1,6 @@
 /*
 Sam Carrillo
-11.11.2020
+11.30.2020
 --------------
 This program is a multi-use encryption/decryption program.
 It can both encrypt and decrypt text. It can read and write cipher
@@ -12,6 +12,7 @@ Assumptions:
 3. If there is no -data, and there is no -in the program should assume that the data is an empty string.
 4. If there is no -out argument, the program must print data to the standard output.
 5. If there are both -data and -in arguments, your program should prefer -data over -in.
+6. If there is no -alg argument, algorithm type shift is assumed.
  */
 package encryptdecrypt;
 
@@ -20,10 +21,8 @@ import java.util.Scanner;
 /*
 TODO:
 - make it so you do not have to use absolute file paths on -in and -out when running from CLI
-- add in different algorithm functionality i.e shift or hash etc etc.
-    - moved encrypt and decrypt algs to separate classes (the class is the Context here) XX
-    - the algorithms of encryption/decryption are implementations of the Strategy interface XX
-    - make it so that in the client code it references the new abstract Encrypter and Decrypter classes and their objects of type <alg type>
+- reference the 'context' class of Encrypter or Decrypter based on what is in -alg arg. default to shift
+- hash out Decrypter.java same way Encrypter is hashed out right now
  */
 public class Main {
     public static void main(String[] args) {
@@ -54,7 +53,6 @@ public class Main {
                 case "-in":
                     usingIn = true;
                     inputFileName = args[i + 1];
-
                     break;
                 case "-out":
                     hasOut = true;
@@ -94,7 +92,7 @@ public class Main {
                 }
                 //[Decrypt]
             } else if (mode.equals("dec")) {
-                PrintWriter writer = new PrintWriter(outPutFileName);
+                PrintWriter writer = new PrintWriter(outPutFileN ame);
                 if (usingData && usingIn) {
                     //using both in and data
                     if (hasOut) {
