@@ -6,12 +6,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-interface Decryptor{
+//Common Strategy Interface
+interface DecryptMethod {
     String decrypt(char[] _chars, int _key);
 }
 
-class DecryptorClass implements Decryptor {
-
+//concrete strategy
+class UnicodeDecrypt implements DecryptMethod {
     public  String decrypt(char[] _chars, int _key) {
         //method for decrypt
         char nullChar = 0;//beginning of base ASCII table
@@ -26,7 +27,10 @@ class DecryptorClass implements Decryptor {
         }
         return result;
     }
+}
 
+//concrete strategy
+class UnicodeDecryptFromFile implements DecryptMethod {
     public static void decryptFile(String inputFileName, String outputFileName, int _key, boolean usingOut) {
         //The encrypt method for files
         //Takes 4 parameters, Encrypts according to key value and prints according to usingOut value
@@ -62,9 +66,44 @@ class DecryptorClass implements Decryptor {
             System.err.println("IOException: " + e.getMessage());
         }
     }
+}
 
-    public static void decrypt_NewAlg() {
+//concrete strategy
+class ShiftDecrypt implements DecryptMethod{
+    @Override
+    public String decrypt(char[] _chars, int _key) {
+        char a = 'a';
+        char A = 'A';
+        char z = 'z';
+        char Z = 'Z';
+        int size = 26;
+        String result = "";
+        //for-each decrypting the chars array
+        for(char item: _chars){
+            if (item >= a && item <= z){
+                char shiftItem = (char) (((item + a - _key) % size) - a);
+                result += shiftItem;
+            } else if (item >= A && item <= Z){
+                char shiftItem = (char) (((item + A - _key) % size) - A);
+                result += shiftItem;
+            }
+        }
+        return result;
+    }
+}
 
+//context
+class MessageDecrypter{
+    private DecryptMethod method;
+
+    public void setMethod(DecryptMethod method) {
+        this.method = method;
     }
 
+    //since we are making the "from-file" encrypt and decrypt methods their own strategy
+    //we will need to make an object that holds all necessary parameters and pass them to this
+    public void decrypt (char[] _chars, int key){
+        //specialsaus
+        this.method.decrypt(_chars,key);
+    }
 }

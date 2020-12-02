@@ -21,8 +21,9 @@ import java.util.Scanner;
 /*
 TODO:
 - make it so you do not have to use absolute file paths on -in and -out when running from CLI
-- reference the 'context' class of Encrypter or Decrypter based on what is in -alg arg. default to shift
-- hash out Decrypter.java same way Encrypter is hashed out right now
+- reference the 'context' class of Encrypter or Decrypter based on what is in -alg arg. default to shift <--here-->
+- need to make an aggregate object to pass to ALL encryption and decryption methods
+- need to make shiftDecryptFromFile
  */
 public class Main {
     public static void main(String[] args) {

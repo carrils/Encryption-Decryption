@@ -18,7 +18,6 @@ interface EncryptMethod{
 
 //concrete strategy
 class UnicodeEncrypt implements EncryptMethod{
-
      @Override
     public String encrypt(char[] _chars, int _key) {
         //this is unicode algorithm
@@ -34,9 +33,13 @@ class UnicodeEncrypt implements EncryptMethod{
         }
         return result;
     }
+}
 
-    //this one might need to be another class that implements the csi "Encryptor"
-    public static void encryptFile(String inputFileName, String outputFileName, int _key, boolean usingOut) {
+//concrete strategy
+//the from-files need to be their own concrete strategy because the function name needs to be
+//the implementation of the CSI abstract function name and also needs to be able to call it in context
+class UnicodeEncryptFromFile implements EncryptMethod{
+    public static void encrypt(String inputFileName, String outputFileName, int _key, boolean usingOut) {
         //The encrypt method for files
         //Takes 4 parameters, Encrypts according to key value and prints according to usingOut value
         File inputFile = new File(inputFileName);
@@ -77,9 +80,10 @@ class UnicodeEncrypt implements EncryptMethod{
 
 //concrete strategy
 class ShiftEncrypt implements EncryptMethod{
-
     @Override
     public String encrypt(char[] _chars, int _key) {
+        //do we need these chars? might just be able to use character literals
+        //for comparison and shiftItem calculation
         char a = 'a';
         char A = 'A';
         char z = 'z';
@@ -111,6 +115,8 @@ class MessageEncrypter{
     }
 
     //this is the delegation of execution (encryption) to a concrete strategy through the csi
+    //since we are making the "from-file" encrypt and decrypt methods their own strategy
+    //we will need to make an object that holds all necessary parameters and pass them to this
     public void encrypt(char[] _chars, int _key){
         /*
         This right here is the special sauce and what makes Strategy as a design pattern good.
