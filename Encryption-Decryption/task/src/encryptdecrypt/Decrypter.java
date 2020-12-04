@@ -107,3 +107,16 @@ class MessageDecrypter{
         this.method.decrypt(_chars,key);
     }
 }
+
+//aggregate type
+class DecryptedMessage{
+    //this is the aggregate type which will hold all parameters to
+    //pass to the concrete strategies since some encrypt() methods
+    //require different parameters (might only need the one?? in encrypter.java)
+
+    public int key;
+    public char[] chars;
+    public String inputFile; //name
+    public String outputFile; //name
+    public boolean usingOut;
+}

@@ -128,3 +128,16 @@ class MessageEncrypter{
         this.method.encrypt(_chars, _key);
     }
 }
+
+//aggregate type
+class EncryptedMessage{
+    //this is the aggregate type which will hold all parameters to
+    //pass to the concrete strategies since some encrypt() methods
+    //require different parameters
+
+    public int key;
+    public char[] chars;
+    public String inputFile; //name
+    public String outputFile; //name
+    public boolean usingOut;
+}
