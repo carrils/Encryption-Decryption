@@ -8,20 +8,20 @@ import java.util.Scanner;
 
 //Common Strategy Interface
 interface DecryptMethod {
-    String decrypt(char[] _chars, int _key);
+    String decrypt(EncryptedMessage message);
 }
 
 //concrete strategy
 class UnicodeDecrypt implements DecryptMethod {
-    public  String decrypt(char[] _chars, int _key) {
+    public  String decrypt(EncryptedMessage message) {
         //method for decrypt
         char nullChar = 0;//beginning of base ASCII table
         int size = 128;
         String result = "";
         //for-each loop for decrypting chars array
-        for (char item : _chars) {
+        for (char item : message.chars) {
             //calculates ASCII value of character after shifting <key>, casts ASCII value back to char
-            char shiftItem = (char) (((item + nullChar - _key) % size) - nullChar);
+            char shiftItem = (char) (((item + nullChar - message.key) % size) - nullChar);
             //concatenate the shifted char back into the file line 'result'
             result += shiftItem;
         }
@@ -31,11 +31,11 @@ class UnicodeDecrypt implements DecryptMethod {
 
 //concrete strategy
 class UnicodeDecryptFromFile implements DecryptMethod {
-    public static void decryptFile(String inputFileName, String outputFileName, int _key, boolean usingOut) {
+    public static void decryptFile(EncryptedMessage message) {
         //The encrypt method for files
         //Takes 4 parameters, Encrypts according to key value and prints according to usingOut value
-        File inputFile = new File(inputFileName);
-        File outputFile = new File(outputFileName);
+        File inputFile = new File(message.inputFile);
+        File outputFile = new File(message.outputFile);
         try (Scanner input = new Scanner(inputFile)) {
             FileWriter output = new FileWriter(outputFile);
 
@@ -48,12 +48,12 @@ class UnicodeDecryptFromFile implements DecryptMethod {
                 char[] fileLine = input.next().toCharArray();
                 for (char item : fileLine) {
                     //calculates ASCII value of character after shifting <key>, casts ASCII value back to char
-                    char shiftItem = (char) (((item + nullChar - _key) % size) - nullChar);
+                    char shiftItem = (char) (((item + nullChar - message.key) % size) - nullChar);
                     //concatenate the shifted char back into the file line 'result'
                     result += shiftItem;
                 }
                 //print either to standard output or to file depending on boolean 'usingOut'
-                if (usingOut) {
+                if (message.usingOut) {
                     output.write(result);
                 } else {
                     System.out.print(result);
@@ -71,7 +71,7 @@ class UnicodeDecryptFromFile implements DecryptMethod {
 //concrete strategy
 class ShiftDecrypt implements DecryptMethod{
     @Override
-    public String decrypt(char[] _chars, int _key) {
+    public String decrypt(EncryptedMessage message) {
         char a = 'a';
         char A = 'A';
         char z = 'z';
@@ -79,12 +79,12 @@ class ShiftDecrypt implements DecryptMethod{
         int size = 26;
         String result = "";
         //for-each decrypting the chars array
-        for(char item: _chars){
+        for(char item: message.chars){
             if (item >= a && item <= z){
-                char shiftItem = (char) (((item + a - _key) % size) - a);
+                char shiftItem = (char) (((item + a - message.key) % size) - a);
                 result += shiftItem;
             } else if (item >= A && item <= Z){
-                char shiftItem = (char) (((item + A - _key) % size) - A);
+                char shiftItem = (char) (((item + A - message.key) % size) - A);
                 result += shiftItem;
             }
         }
@@ -102,9 +102,9 @@ class MessageDecrypter{
 
     //since we are making the "from-file" encrypt and decrypt methods their own strategy
     //we will need to make an object that holds all necessary parameters and pass them to this
-    public void decrypt (char[] _chars, int key){
+    public void decrypt (EncryptedMessage message){
         //specialsaus
-        this.method.decrypt(_chars,key);
+        this.method.decrypt(message);
     }
 }
 
