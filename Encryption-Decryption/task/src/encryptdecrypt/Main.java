@@ -23,6 +23,7 @@ TODO:
 - make it so you do not have to use absolute file paths on -in and -out when running from CLI
 - reference the 'context' class of Encrypter or Decrypter based on what is in -alg arg. default to shift <--here-->
 - need to make shiftDecryptFromFile
+- mete out printwriter functionality to client code, make the from-files return string to match
  */
 public class Main {
     public static void main(String[] args) {

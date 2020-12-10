@@ -53,6 +53,10 @@ class UnicodeDecryptFromFile implements DecryptMethod {
                     result += shiftItem;
                 }
                 //print either to standard output or to file depending on boolean 'usingOut'
+
+                // *** HERE ***
+                //separate the writing mechanism and mete out printwriting to client code
+                //this way we can return a string and have it match the common strategy interface return type
                 if (message.usingOut) {
                     output.write(result);
                 } else {

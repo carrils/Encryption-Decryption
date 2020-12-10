@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 //common strategy interface with one abstract method
 interface EncryptMethod{
-    String encrypt(EncryptedMessage message);
+     String encrypt(EncryptedMessage message);
 }
 /*
     Main difference between unicode and shift is that
@@ -39,7 +39,7 @@ class UnicodeEncrypt implements EncryptMethod{
 //the from-files need to be their own concrete strategy because the function name needs to be
 //the implementation of the CSI abstract function name and also needs to be able to call it in context
 class UnicodeEncryptFromFile implements EncryptMethod{
-    public static void encrypt(EncryptedMessage message) {
+    public void encrypt(EncryptedMessage message) {
         //The encrypt method for files
         //Takes 4 parameters, Encrypts according to key value and prints according to usingOut value
         File inputFile = new File(message.inputFile);
@@ -63,6 +63,10 @@ class UnicodeEncryptFromFile implements EncryptMethod{
                     result += shiftItem;
                 }
                 //print either to standard output or to file depending on boolean 'usingOut'
+
+                // *** HERE ***
+                //separate the writing mechanism and mete out printwriting to client code
+                //this way we can return a string and have it match the common strategy interface return type
                 if (message.usingOut) {
                     output.write(result);
                 } else {
