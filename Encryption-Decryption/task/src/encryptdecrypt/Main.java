@@ -67,10 +67,12 @@ public class Main {
             //[Encrypt]
             if (mode.equals("enc")) {
                 PrintWriter writer = new PrintWriter(outPutFileName);
+                FileWriter output = new FileWriter(outputFile);
                 if (usingData && usingIn) {
                     //both using in and data
                     if (hasOut) {
                         writer.println(encrypt(chars, key));
+
                     } else {
                         System.out.println(encrypt(chars, key));
                     }

@@ -39,22 +39,22 @@ class UnicodeEncrypt implements EncryptMethod{
 //the from-files need to be their own concrete strategy because the function name needs to be
 //the implementation of the CSI abstract function name and also needs to be able to call it in context
 class UnicodeEncryptFromFile implements EncryptMethod{
-    public void encrypt(EncryptedMessage message) {
+    public String encrypt(EncryptedMessage message) {
         //The encrypt method for files
         //Takes 4 parameters, Encrypts according to key value and prints according to usingOut value
         File inputFile = new File(message.inputFile);
         File outputFile = new File(message.outputFile);
-
+        String result = "";
         try (Scanner input = new Scanner(inputFile)) {
             //can possibly clean this up? filewriter might be able to
             //be cleaned up like scanner in the try()
-            FileWriter output = new FileWriter(outputFile);
+
 
             while (input.hasNext()) {
                 //encrypt loop
                 char nullChar = 0; // \0
                 int size = 128;
-                String result = "";
+
                 char[] fileLine = input.nextLine().toCharArray();
                 for (char item : fileLine) {
                     //calculates ASCII value of character after shifting <key>, casts ASCII value back to char
@@ -67,18 +67,15 @@ class UnicodeEncryptFromFile implements EncryptMethod{
                 // *** HERE ***
                 //separate the writing mechanism and mete out printwriting to client code
                 //this way we can return a string and have it match the common strategy interface return type
-                if (message.usingOut) {
-                    output.write(result);
-                } else {
-                    System.out.print(result);
-                }
+
             }
-            output.close();
+
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + e.getMessage());
         } catch (IOException e) {
             System.err.println("IOException: " + e.getMessage());
         }
+        return result;
     }
 }
 

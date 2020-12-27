@@ -31,20 +31,21 @@ class UnicodeDecrypt implements DecryptMethod {
 
 //concrete strategy
 class UnicodeDecryptFromFile implements DecryptMethod {
-    public static void decryptFile(EncryptedMessage message) {
+    public String decrypt(EncryptedMessage message) {
         //The encrypt method for files
         //Takes 4 parameters, Encrypts according to key value and prints according to usingOut value
         File inputFile = new File(message.inputFile);
         File outputFile = new File(message.outputFile);
+        String result = "";
         try (Scanner input = new Scanner(inputFile)) {
-            FileWriter output = new FileWriter(outputFile);
+
 
             while (input.hasNext()) {
                 //encrypt loop
                 char nullChar = 0; // \0
                 char delChar = 127;// 007F
                 int size = 128;
-                String result = "";
+
                 char[] fileLine = input.next().toCharArray();
                 for (char item : fileLine) {
                     //calculates ASCII value of character after shifting <key>, casts ASCII value back to char
@@ -57,18 +58,15 @@ class UnicodeDecryptFromFile implements DecryptMethod {
                 // *** HERE ***
                 //separate the writing mechanism and mete out printwriting to client code
                 //this way we can return a string and have it match the common strategy interface return type
-                if (message.usingOut) {
-                    output.write(result);
-                } else {
-                    System.out.print(result);
-                }
+
             }
-            output.close();
+
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + e.getMessage());
         } catch (IOException e) {
             System.err.println("IOException: " + e.getMessage());
         }
+        return result;
     }
 }
 
