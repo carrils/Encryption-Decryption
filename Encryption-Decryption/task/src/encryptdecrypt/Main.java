@@ -23,7 +23,7 @@ TODO:
 - make it so you do not have to use absolute file paths on -in and -out when running from CLI
 - reference the 'context' class of Encrypter or Decrypter based on what is in -alg arg. default to shift <--here-->
 - need to make shiftDecryptFromFile
-- mete out printwriter functionality to client code, make the from-files return string to match
+- logically hash out the exection portion, cover redundancies and catch uncaught options (if there are any)
  */
 public class Main {
     public static void main(String[] args) {
@@ -62,12 +62,21 @@ public class Main {
             }
         }
 
+        //need to create an aggregate type here to reference in the execution portion
+        //perhaps to be ambiguous and remove the redundant class
+        EncryptedMessage msg = new EncryptedMessage();
+        msg.key = key;
+        msg.chars = chars;
+        msg.inputFile = inputFileName;
+        msg.outputFile = outPutFileName;
+        msg.usingOut = hasOut;
+
         //Execution
         try {
             //[Encrypt]
             if (mode.equals("enc")) {
-                PrintWriter writer = new PrintWriter(outPutFileName);
-                FileWriter output = new FileWriter(outputFile);
+                //PrintWriter writer = new PrintWriter(outPutFileName);
+                FileWriter output = new FileWriter(msg.outputFile);
                 if (usingData && usingIn) {
                     //both using in and data
                     if (hasOut) {
@@ -123,6 +132,8 @@ public class Main {
             }
         } catch (FileNotFoundException e) {
             System.err.println("Error: File not found, " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error: IOException, " + e.getMessage());
         }
     }
 }
