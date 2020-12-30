@@ -17,7 +17,7 @@ Assumptions:
 package encryptdecrypt;
 
 import java.io.*;
-import java.util.Scanner;
+
 /*
 TODO:
 - make it so you do not have to use absolute file paths on -in and -out when running from CLI
@@ -64,7 +64,7 @@ public class Main {
 
         //need to create an aggregate type here to reference in the execution portion
         //perhaps to be ambiguous and remove the redundant class
-        EncryptedMessage msg = new EncryptedMessage();
+        AggregateMessage msg = new AggregateMessage();
         msg.key = key;
         msg.chars = chars;
         msg.inputFile = inputFileName;

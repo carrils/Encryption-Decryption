@@ -2,18 +2,17 @@ package encryptdecrypt;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 //Common Strategy Interface
 interface DecryptMethod {
-    String decrypt(EncryptedMessage message);
+    String decrypt(AggregateMessage message);
 }
 
 //concrete strategy
 class UnicodeDecrypt implements DecryptMethod {
-    public  String decrypt(EncryptedMessage message) {
+    public  String decrypt(AggregateMessage message) {
         //method for decrypt
         char nullChar = 0;//beginning of base ASCII table
         int size = 128;
@@ -31,7 +30,7 @@ class UnicodeDecrypt implements DecryptMethod {
 
 //concrete strategy
 class UnicodeDecryptFromFile implements DecryptMethod {
-    public String decrypt(EncryptedMessage message) {
+    public String decrypt(AggregateMessage message) {
         //The encrypt method for files
         //Takes 4 parameters, Encrypts according to key value and prints according to usingOut value
         File inputFile = new File(message.inputFile);
@@ -73,7 +72,7 @@ class UnicodeDecryptFromFile implements DecryptMethod {
 //concrete strategy
 class ShiftDecrypt implements DecryptMethod{
     @Override
-    public String decrypt(EncryptedMessage message) {
+    public String decrypt(AggregateMessage message) {
         char a = 'a';
         char A = 'A';
         char z = 'z';
@@ -104,21 +103,9 @@ class MessageDecrypter{
 
     //since we are making the "from-file" encrypt and decrypt methods their own strategy
     //we will need to make an object that holds all necessary parameters and pass them to this
-    public void decrypt (EncryptedMessage message){
+    public void decrypt (AggregateMessage message){
         //specialsaus
         this.method.decrypt(message);
     }
 }
 
-//aggregate type
-class DecryptedMessage{
-    //this is the aggregate type which will hold all parameters to
-    //pass to the concrete strategies since some encrypt() methods
-    //require different parameters (might only need the one?? in encrypter.java)
-
-    public int key;
-    public char[] chars;
-    public String inputFile; //name
-    public String outputFile; //name
-    public boolean usingOut;
-}

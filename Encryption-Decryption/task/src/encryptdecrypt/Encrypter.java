@@ -2,13 +2,12 @@ package encryptdecrypt;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 //common strategy interface with one abstract method
 interface EncryptMethod{
-     String encrypt(EncryptedMessage message);
+     String encrypt(AggregateMessage message);
 }
 /*
     Main difference between unicode and shift is that
@@ -19,7 +18,7 @@ interface EncryptMethod{
 //concrete strategy
 class UnicodeEncrypt implements EncryptMethod{
      @Override
-    public String encrypt(EncryptedMessage message) {
+    public String encrypt(AggregateMessage message) {
         //this is unicode algorithm
         char nullChar = 0; // \0
         int size = 128;
@@ -39,7 +38,7 @@ class UnicodeEncrypt implements EncryptMethod{
 //the from-files need to be their own concrete strategy because the function name needs to be
 //the implementation of the CSI abstract function name and also needs to be able to call it in context
 class UnicodeEncryptFromFile implements EncryptMethod{
-    public String encrypt(EncryptedMessage message) {
+    public String encrypt(AggregateMessage message) {
         //The encrypt method for files
         //Takes 4 parameters, Encrypts according to key value and prints according to usingOut value
         File inputFile = new File(message.inputFile);
@@ -82,7 +81,7 @@ class UnicodeEncryptFromFile implements EncryptMethod{
 //concrete strategy
 class ShiftEncrypt implements EncryptMethod{
     @Override
-    public String encrypt(EncryptedMessage message) {
+    public String encrypt(AggregateMessage message) {
         //do we need these chars? might just be able to use character literals
         //for comparison and shiftItem calculation
         char a = 'a';
@@ -118,7 +117,7 @@ class MessageEncrypter{
     //this is the delegation of execution (encryption) to a concrete strategy through the csi
     //since we are making the "from-file" encrypt and decrypt methods their own strategy
     //we will need to make an object that holds all necessary parameters and pass them to this
-    public void encrypt(EncryptedMessage message){
+    public void encrypt(AggregateMessage message){
         /*
         This right here is the special sauce and what makes Strategy as a design pattern good.
         because the encryption method of each concrete strategy shares the
@@ -131,7 +130,7 @@ class MessageEncrypter{
 }
 
 //aggregate type
-class EncryptedMessage{
+class AggregateMessage {
     //this is the aggregate type which will hold all parameters to
     //pass to the concrete strategies since some encrypt() methods
     //require different parameters
