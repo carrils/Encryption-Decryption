@@ -80,7 +80,8 @@ public class Main {
                 if (usingData && usingIn) {
                     //both using in and data
                     if (hasOut) {
-                        writer.println(encrypt(chars, key));
+                        UnicodeEncryptFromFile message = new UnicodeEncryptFromFile();
+                        output.write(String.valueOf(message));
 
                     } else {
                         System.out.println(encrypt(chars, key));
