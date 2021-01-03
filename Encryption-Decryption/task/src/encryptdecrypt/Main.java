@@ -105,7 +105,7 @@ public class Main {
                 }
                 //[Decrypt]
             } else if (mode.equals("dec")) {
-                PrintWriter writer = new PrintWriter(outPutFileN ame);
+                PrintWriter writer = new PrintWriter(outPutFileName);
                 if (usingData && usingIn) {
                     //using both in and data
                     if (hasOut) {
